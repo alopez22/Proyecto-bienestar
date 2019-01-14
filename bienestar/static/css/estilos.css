@@ -1,0 +1,162 @@
+/* Estilo para el cuerpo de nuestra estructura Html */
+body{
+	
+	margin:auto;
+	display:block;
+	background-color: #dee2e6;
+}
+/*Estilo para nuestro contenedor*/
+.container-fluid{
+	color: black;
+	text-align: center;
+	
+}
+/* Estilo para nuestro formulario de Inicio de sesión */
+.form-sigin{
+	width: 70%;
+	max-width: 200px;
+	padding: 10px;
+	margin: auto;
+}
+/* Estilo para nuestro texto del menú */
+.ver{
+	color: white;
+}
+/* Estilo para nuestra etiqueta crear */
+.crear{
+	color: #d9ff12;
+}
+/* Estilo para nuestro botón */
+.badge.badge-info{
+	height: 20px;
+
+}
+/* Estilo para nuestro texto de bienvenida */
+.bienvenida{
+	text-align: center;
+	color: #29ab13;
+}
+/* Estilo para nuestros items de lista */
+.lista1{
+	color: #ffc107;
+
+}
+/* Estilo para nuestras cajas de texto de los formularios */
+.form-control{
+	width: 70%;
+	max-width: 250px;
+	padding: 10px;
+	margin-left: 22px;
+	border-color: #2ace21;
+
+}
+/* Márgenes para nuestra lista */
+ul {
+  padding:0 4 4 0;
+  margin:0 0 0 0;
+  margin: auto;
+}
+
+/* Estilos para nuestra lista */
+ul li {
+  list-style:none;
+  margin-bottom:20px;
+  margin: auto;
+}
+
+/* Margenes para nuestras imagenes en lista */
+ul li img {
+  cursor: pointer;
+  margin: auto;
+}
+
+/* Estilo para textos de etiquetas */
+.texto-user{
+	margin-top: 11px;
+	color: #fff;
+	margin-left: -40px;
+	border-color: #000;
+	
+}
+/* Estilos para nuestras etiquetas de tipo parrafo */
+p{
+	color: black;
+	text-align: center;
+	font-style: italic;
+}
+/* Estilos para textos */
+.texto1{
+	color: #4ec352e6;
+	font-style: inherit;
+	text-align: center;
+	font-size: 28px;
+}
+/* margenes para algunos textos nombrados con la clase "texto2" */
+.texto2{
+	text-align: left;
+}
+/* Estilos para algunos textos nombrados con la clase "texto3" */
+.texto3{
+	color: #228a26e6;
+	font-style: italic;
+	text-align: center;
+	font-size: 14px;
+	margin-top: 30px;
+}
+/* margenes y estilos para algunos textos nombrados con la clase "texto4" */
+.texto4{
+	text-align: left;
+	font-size: 22px;
+	font-style: oblique;
+}
+/* margenes y estilos para algunos textos nombrados con la clase "texto5" */
+.texto5{
+	text-align: left;
+	color: #228a26e6;
+	font-style: italic;
+	font-size: 18px;
+}
+/* Estilos para textos en lista*/
+.lista2{
+	font-size: 20px; 
+	font-style: italic;
+	height: 10px;
+	text-align: justify;
+}
+/*Margenes para nuestro botón de agregar datos */
+.btn.btn-outline-light{
+	float: right;
+}
+/* Estilos para texto */
+.arreglo{
+	color: #fff;
+	text-decoration-line: #effb0e;
+	font-size: 13px;
+}
+/* Estilos para nuestras tablas con items */
+.table .thead-dark th{
+    color: #fff;
+    background-color: #c2d84b;
+    border-color:#05aeffb0;
+}
+/* Márgenes para nuestras etiquetas de tipo imagen */
+img{
+	float: left;
+}
+/* Márgenes para nuestro contenedor de textos y demás */
+.container{
+	position: center;
+}
+/* Alineacion para nuestro texto en lista */
+.lista3{
+	text-align: left;
+}
+/* Estilos para nuestra tabla personalizada */
+.table .thead-light th{
+	border-color: green;
+
+}
+/* Estilos para otro texto nombrado con la clase "arreglo */
+.arreglo2{
+	color: #4ec352e6;
+}

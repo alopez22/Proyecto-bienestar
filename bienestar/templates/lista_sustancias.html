@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block titulo %}
+{% endblock %}
+{% block content %}
+
+<!-- Template que nos muestra la lista de sustancias psicoactivas en lista -->
+	<h1 class="lista1" style="color: #d8d41d;">SUSTANCIAS Y EFECTOS</h1>
+		
+			<!-- Creamos nuestra tabla para mostrar los datos de manera organizada -->
+	<table class="table">
+  <thead class="thead thead-dark">
+    <tr>
+      <th class="lista" scope="col">Alucinógeno</th>
+      <th class="lista" scope="col">Consecuencias</th>
+      <th class="lista" scope="col">Imagen</th>
+    </tr>
+  </thead>
+  <!-- Creamos un ciclo para que los datos que se guarden se vayan mostrando de manera progresiva en nuestra tabla -->
+	{% for c in lista %}
+  <tbody style="border-color: green;">
+    <tr>
+      <td class="lista2">{{ c.nombre }}</td>
+      <td class="lista2">{{ c.descripcion }}</td>
+      <td><img width="70" height="70" src="/media/{{c.imagene}}">
+        <br>
+        <!-- Algunas validaciones para que el superusuario pueda editar y eliminar los items de la tabla -->
+      {% if user.is_authenticated and user.is_superuser %}
+      <!-- Codigo comentado que nos muestra la información de cada item de la lista por si queremos algo más detallado -->
+      <!-- <a class="arreglo2" href="/ver_droga/{{c.id}}">Info</a> -->
+			 <a class="arreglo2" href="/editar_droga/{{ c.id }}">Editar</a>
+			 <a class="arreglo2" href="/eliminar_droga/{{ c.id }}">Eliminar</a>
+		{% endif %}</td>
+    </tr>
+  </tbody>
+	{% endfor %}
+</table>
+		
+{% endblock %}

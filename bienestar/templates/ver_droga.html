@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+	{% block titulo %}
+	{% endblock %}
+	
+	{% block content %}
+	<!-- Template que nos recoge los items de la tabla Categoria, para verlos de forma más detallada -->
+	<p class="texto4">
+			Nombre:
+		</p>
+		<p class="texto5">
+			{{ c.nombre }}
+		</p>
+	
+		<p class="texto4">
+			Descripción: 
+		</p>
+			<p class="texto5">
+				{{ c.descripcion }}
+			</p>
+		<p class="texto4">
+			Imagen:
+		</p>
+		<br>
+		<img width="200" height="200" src="/media/{{ c.imagen}}">
+		<a class="btn btn-info" href="/lista_sustancias">Regresar a la lista</a>
+
+		</br>
+	{% endblock %}

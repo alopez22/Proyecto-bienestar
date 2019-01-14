@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block titulo %}
+{% endblock %}
+{% block content %}
+
+<!-- Template que nos obtiene la tabla de Tips y nos lo organiza en una tabla personalizada -->
+	<h1 class="lista1" style="color: #d8d41d;">Tips y Consejos</h1>
+		
+			
+	<table class="table">
+  <thead class="thead thead-light">
+    <tr>
+      <th class="lista" scope="col">Tip</th>
+      <th class="lista" scope="col">Descripción</th>
+    </tr>
+  </thead>
+	{% for l in lista2 %}
+  <tbody style="border-color: green;">
+    <tr>
+      <td class="lista3">{{ l.nombre }}</td>
+      <td class="lista2">{{ l.descripcion }}</td>
+      <td class="lista2">{{ l.telefono }}</td>
+  <td><img class="imagentrabajo" src="/static/imagenes/senafondo.png" width="80" height="80" style="margin-left: 5px; border-color: black;"></td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
+		
+{% endblock %}

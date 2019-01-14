@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block titulo %}
+{% endblock %}
+{% block content %}
+
+<!-- Template que nos obtiene la tabla de Tips y nos lo organiza en una tabla personalizada -->
+	<h1 class="lista1" style="color: #d8d41d;">Eventos para ayudar contra la adicción</h1>
+		
+			
+	<table class="table">
+  <thead class="thead thead-light">
+    <tr>
+      <th class="lista" scope="col">Nombre</th>
+      <th class="lista" scope="col">Descripción</th>
+      <th class="lista" scope="col">Centro</th>
+    </tr>
+  </thead>
+	{% for s in lista4 %}
+  <tbody style="border-color: green;">
+    <tr>
+      <td class="lista3">{{ s.nombre }}</td>
+      <td class="lista2">{{ s.descripcion }}</td>
+      <td class="lista2">{{ s.centros }}</td>
+  <td><img class="imagentrabajo" src="/static/imagenes/senafondo.png" width="80" height="80" style="margin-left: 5px; border-color: black;">
+    <br>
+        <!-- Algunas validaciones para que el superusuario pueda editar y eliminar los items de la tabla -->
+      {% if user.is_authenticated and user.is_superuser %}
+      <!-- Codigo comentado que nos muestra la información de cada item de la lista por si queremos algo más detallado -->
+      <!-- <a class="arreglo2" href="/ver_droga/{{c.id}}">Info</a> -->
+       <a class="arreglo2" href="/editar_eventos/{{ s.id }}">Editar</a>
+       <a class="arreglo2" href="/eliminar_eventos/{{ s.id }}">Eliminar</a>
+    {% endif %}</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
+		
+{% endblock %}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- Creamos nuestro html base que nos servirá de plantilla para aplicar la estructura a todos los demás -->
+{% load static %}
+<html>
+<link rel="shortcut icon" href="{% static 'imagenes/icono.png' %}" />
+<head class="contenido">
+	 <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/css/estilos.css">
+	{% block titulo %}
+	
+	{% endblock %}
+</head>
+ 
+<body>
+	<nav  class="navbar navbar-light" style="background-color: #4ec352e6">
+  <!-- Navbar content -->
+  <!-- Contenido de nuestro menú de navegación -->
+  <img class="imagenbiene" src="/static/imagenes/bienestar.png" width="94" height="45">
+  <!-- Creamos una función de la siguiente forma, para privar a los usuarios públicos de los usuarios registrados y permitirles funcionalidades adicionales -->
+  <!-- Serán varios bloques de condición para lo que queramos quitar o añadir dependiendo del tipo de usuario que ingresa a nuestra aplicación -->
+  {% if user.is_authenticated %}
+  <p class="texto-user" >Bienvenido: {{ user }}</p>
+   {% endif %}
+  <a class="arreglo" href="/">Nuestra Causa</a>
+  {% if user.is_authenticated %}
+  <a class="arreglo" href="/lista_sustancias">Entérate</a>
+  <a class="arreglo" href="/lista_tips">Consejos</a>
+  <a class="arreglo" href="/lista_eventos">Eventos</a>
+  <a class="arreglo" href="/lista_ver_centros">Centros</a>
+  <a class="arreglo" href="/agregar_sustancia_psicoactiva">Agregar una Droga</a>
+  <a class="arreglo" href="/agregar_centro">Agregar un Centro</a>
+  <a class="arreglo" href="/agregar_eventos">Agregar Eventos</a>
+  <a href="/logout" class="btn btn-outline-light">Cerrar sesión</a>
+
+
+  
+  {% else %}
+  <a class="arreglo" href="/lista_sustancias">Entérate</a>
+  <a class="arreglo" href="/lista_tips">Consejos</a>
+  <a class="crear" href="/crear_perfil">Crear perfil</a>
+    <a href="/login" class="btn btn-outline-light">Iniciar sesión</a>
+
+  {% endif %}
+  </nav>
+  <div class="container-fluid">
+   {% if user.is_authenticated %}
+   {% else %}
+   <h2>Bienvenido/a Estimado Usuario</h2>
+    {% endif %}
+
+  
+	
+
+{% block content %}
+{% endblock %}
+
+
+   
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  </div>
+ 
+
+    <p class="texto3">
+        SENA (Servicio Nacional De Aprendizaje) Y Bienestar al aprendiz. Todos los derechos Reservados®  
+    </p>
+ 
+</body>
+ 
+</html>

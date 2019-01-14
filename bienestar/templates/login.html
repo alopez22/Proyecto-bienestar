@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block titulo %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Formulario para iniciar sesión en nuestra aplicación -->
+	<h2>{{ msj }}</h2>
+	<form class="form-sigin" action="" action="" method="POST">
+		<!-- Asignamos una seguridad de primer nivel, el "token" nos guardará la información del perfil en un código encriptado -->
+		{% csrf_token %}
+		<div class="form-group">
+		{{ formulario.as_p }}
+		</div>
+		<button style="margin-bottom: 10px; margin-right: 10px;" type="submit" class="btn btn-outline-success">Iniciar sesión</button>
+	</form0
+{% endblock %}

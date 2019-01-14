@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+	{% block titulo %}
+	<title>Agregar/Editar Eventos</title>
+	{% endblock %}
+
+	{% block content %}
+	 {% if user.is_authenticated %}
+	<h3 style="color: #4ec352e6;">Agrega o edita un Evento:</h3>
+	<form action="" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ formulario.as_p }}
+		<button style="margin-bottom: 10px;" type="submit" class="btn btn-outline-success">ACEPTAR</button>
+	</form>
+   	{% else %}
+   	<h6>Lo sentimos, usted está intentando acceder a una funcionalidad que no cumple con sus requisitos de usuario, porfavor contacte con un administrador para obtener más información acerca de este problema.</h6>
+   	{% endif %}
+	{% endblock %}
