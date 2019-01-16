@@ -25,4 +25,7 @@ urlpatterns = [
 	path('eliminar_eventos/<int:id_events>/', vista_eliminar_eventos, name='vista_eliminar_eventos' ),
 	path('agregar_eventos/',vista_agregar_eventos, name='vista_agregar_eventos'),
 	path('lista_eventos/',vista_lista_eventos, name='vista_lista_eventos'),
+	path('editar_tips/<int:id_typis>/', vista_editar_tips, name='vista_editar_tips' ),
+	path('eliminar_tips/<int:id_typis>/', vista_eliminar_tips, name='vista_eliminar_tips' ),
+	path('agregar_tips/',vista_agregar_tips, name='vista_agregar_tips'),
 ]

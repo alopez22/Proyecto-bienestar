@@ -37,7 +37,7 @@ class Categoria(models.Model):
 	def __str__(self):
 		return self.nombre
 
-
+#Modelo de datos para tips y consejos en la página
 class Tips(models.Model):
 	nombre =models.CharField(max_length = 100)
 	descripcion = models.TextField(max_length= 600)
@@ -45,6 +45,7 @@ class Tips(models.Model):
 	def __str__(self):
 		return self.nombre
 
+#Modelo para recoger los datos de un usuario y registrarlos en nuestra página
 class Perfil(models.Model):
 	documento = models.CharField(max_length = 20)
 	edad = models.IntegerField()

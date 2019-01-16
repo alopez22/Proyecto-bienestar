@@ -19,4 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('sena.urls')),
+    #Incluimos las urls de nuestra aplicación de los servicios web
+    #path('',include('webservices.urls')),
 ]

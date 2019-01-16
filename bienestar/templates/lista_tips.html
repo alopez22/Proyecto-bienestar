@@ -19,11 +19,18 @@
     <tr>
       <td class="lista3">{{ l.nombre }}</td>
       <td class="lista2">{{ l.descripcion }}</td>
-      <td class="lista2">{{ l.telefono }}</td>
-  <td><img class="imagentrabajo" src="/static/imagenes/senafondo.png" width="80" height="80" style="margin-left: 5px; border-color: black;"></td>
+  <td><img class="imagentrabajo" src="/static/imagenes/senafondo.png" width="80" height="80" style="margin-left: 5px; border-color: black;">
+    <br>
+        <!-- Algunas validaciones para que el superusuario pueda editar y eliminar los items de la tabla -->
+      {% if user.is_authenticated and user.is_superuser %}
+      <!-- Codigo comentado que nos muestra la información de cada item de la lista por si queremos algo más detallado -->
+      <!-- <a class="arreglo2" href="/ver_droga/{{c.id}}">Info</a> -->
+       <a class="arreglo2" href="/editar_tips/{{ l.id }}">Editar</a>
+       <a class="arreglo2" href="/eliminar_tips/{{ l.id }}">Eliminar</a>
+    {% endif %}</td>
     </tr>
   </tbody>
   {% endfor %}
 </table>
-		
+    
 {% endblock %}

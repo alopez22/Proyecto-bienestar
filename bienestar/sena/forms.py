@@ -1,7 +1,7 @@
 #Importa este directorio forms para recoger todos nuestros formularios.
 from django import forms
 #Importamos desde el archivo models.py los siguientes modelos:
-from .models import Categoria, Perfil, Centros, Eventos
+from .models import Categoria, Perfil, Centros, Eventos, Tips
 #Importamos los ajustes para authentificar a lo Usuarios de nuestra aplicacion.
 from django.contrib.auth.models import User 
 
@@ -30,6 +30,11 @@ class agregar_eventos_form(forms.ModelForm):
 		model = Eventos
 		fields = '__all__'
 
+class agregar_tips_form(forms.ModelForm):
+	class Meta:
+		#Le indicamos que recoja los datos del modelo Categoría
+		model = Tips
+		fields = '__all__'
 
 #Clase que nos permite registrar a un usuario, para asignarle su perfil en la página.
 class register_form(forms.Form):

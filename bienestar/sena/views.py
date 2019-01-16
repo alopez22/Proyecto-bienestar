@@ -95,16 +95,19 @@ def vista_logout(request):
 def vista_inicio(request):
 	return render(request, 'inicio.html', locals())
 
+#Vista para regisgtrar un usuario con un perfil
 def vista_register(request):
 	formulario = register_form()
 	if request.method == 'POST':
 		formulario = register_form(request.POST)
 		if formulario.is_valid():
+			#Métodos para limpiar las cajas de texto cuando se haya completado el registro
 			usuario = formulario.cleaned_data['username']
 			correo = formulario.cleaned_data['email']
 			password_1 = formulario.cleaned_data['password_1']
 			password_2 = formulario.cleaned_data['password_2']
 			u = User.objects.create_user(username=usuario, email=correo, password= password_1)
+			#Función para guardar los datos del usuario registrado
 			u.save()
 			return render(request, 'thanks_for_register.html', locals())
 		else:
@@ -112,7 +115,7 @@ def vista_register(request):
 	return render(request, 'register.html', locals())
 
 
-
+#Vista para que recoge el registro del usuario y crea su perfil 
 def vista_crear_perfil(request):
 	formulario_1 = register_form()
 	formulario_2 = perfil_form()
@@ -120,13 +123,14 @@ def vista_crear_perfil(request):
 		formulario_1 = register_form(request.POST)
 		formulario_2 = perfil_form(request.POST, request.FILES)
 		if formulario_1.is_valid() and formulario_2.is_valid():
+			#Métodos para limpiar las cajas de texto del perfil registrado
 			usuario = formulario_1.cleaned_data['username']
 			correo = formulario_1.cleaned_data['email']
 			password_1 = formulario_1.cleaned_data['password_1']
 			password_2 = formulario_1.cleaned_data['password_2']
 			u = User.objects.create_user(username=usuario, email=correo, password= password_1)
+			#Función para guardar el perfil
 			u.save()
-			
 			y = formulario_2.save(commit = False)
 			y.user = u
 			y.save()
@@ -143,6 +147,7 @@ def vista_ver_centros(request):
 	#Enviamos esos datos a nuestro template asignado para mostrarlos al usuario.
 	return render(request, 'lista_ver_centros.html', locals())
 
+#Vista que nos proporciona un formulario dónde podrá agregar un Centro el superusuario
 def vista_agregar_centro(request):
 	if request.method == 'POST':
 		formulario = agregar_centro_form(request.POST, request.FILES)
@@ -154,17 +159,17 @@ def vista_agregar_centro(request):
 		   formulario.save_m2m()
 		   #Variable que nos regresa al template de lista con los items.
 		return redirect('/lista_ver_centros/')
-	#Si no se cumple la condición anterior, entonces nos retorna al template de agregar la sustancia.
+	#Si no se cumple la condición anterior, entonces nos retorna al template de agregar un Centro.
 	else:
 		formulario = agregar_centro_form()
 	return render(request, 'agregar_centro.html', locals())
 
 
-#Vista que nos permitirá editar los campos de un item previamente agregado.
+#Vista que nos permitirá editar los campos de un centro previamente agregado.
 def vista_editar_centros(request, id_center):
 	#Obtenemos el id del item que se editará
 	cent = Centros.objects.get(id = id_center)
-	#Creamos una condición con el método POST, para gestionar la información de un item de la tabla categoría
+	#Creamos una condición con el método POST, para gestionar la información de un item de la tabla centros
 	if request.method =="POST":
 		formulario = agregar_centro_form(request.POST, request.FILES, instance =cent)
 		if formulario.is_valid():
@@ -172,23 +177,24 @@ def vista_editar_centros(request, id_center):
 			cent = formulario.save()
 			#Función que nos regresa al template que contiene la lista de los datos ya modificados.
 			return redirect('/lista_ver_centros')
-	#Si no se cumple la petición de forma correcta, nos regresará al template de agregar una sustancia.
+	#Si no se cumple la petición de forma correcta, nos regresará al template de agregar un Centro.
 	else:
 		formulario = agregar_centro_form(instance = cent)
 		return render(request, 'agregar_centro.html', locals())
 
-#Vista que dará la opción de eliminar un item de la tabla Categoría al superusuario.
+#Vista que dará la opción de eliminar un item de la tabla Centros al superusuario.
 def vista_eliminar_centros(request, id_center):
 	cent = Centros.objects.get(id = id_center)
 	cent.delete()
 	return redirect('/lista_ver_centros/')
 
+#Vista que nos lista los datos de la tabla eventos
 def vista_lista_eventos(request):
 	lista4 = Eventos.objects.filter()
 	#Enviamos los datos a peticion a nuestro template que tendrá la lista con los datos.
 	return render(request, 'lista_eventos.html', locals())
 
-
+#Vista que nos dará la opción de agregar un Evento o multiples eventos en nuestra aplicación
 def vista_agregar_eventos(request):
 	if request.method == 'POST':
 		formulario = agregar_eventos_form(request.POST, request.FILES)
@@ -200,16 +206,16 @@ def vista_agregar_eventos(request):
 		   formulario.save_m2m()
 		   #Variable que nos regresa al template de lista con los items.
 		return redirect('/lista_eventos/')
-	#Si no se cumple la condición anterior, entonces nos retorna al template de agregar la sustancia.
+	#Si no se cumple la condición anterior, entonces nos retorna al template de agregar un evento.
 	else:
 		formulario = agregar_eventos_form()
 	return render(request, 'agregar_eventos.html', locals())
 
-
+#Vista que da la opción al superusuario de editar los datos de un evento
 def vista_editar_eventos(request, id_events):
 	#Obtenemos el id del item que se editará
 	event = Eventos.objects.get(id = id_events)
-	#Creamos una condición con el método POST, para gestionar la información de un item de la tabla categoría
+	#Creamos una condición con el método POST, para gestionar la información de un item de la tabla eventos
 	if request.method =="POST":
 		formulario = agregar_eventos_form(request.POST, request.FILES, instance =event)
 		if formulario.is_valid():
@@ -217,13 +223,57 @@ def vista_editar_eventos(request, id_events):
 			event = formulario.save()
 			#Función que nos regresa al template que contiene la lista de los datos ya modificados.
 			return redirect('/lista_eventos')
-	#Si no se cumple la petición de forma correcta, nos regresará al template de agregar una sustancia.
+	#Si no se cumple la petición de forma correcta, nos regresará al template de agregar un evento.
 	else:
 		formulario = agregar_eventos_form(instance = event)
 		return render(request, 'agregar_eventos.html', locals())
 
-#Vista que dará la opción de eliminar un item de la tabla Categoría al superusuario.
+#Vista que dará la opción de eliminar un item de la tabla Eventos al superusuario.
 def vista_eliminar_eventos(request, id_events):
+	#Recoge el id del item de la tabla Eventos
 	event = Eventos.objects.get(id = id_events)
+	#Borra el item de la tabla eventos una vez clickeada la opción de eliminar
 	event.delete()
+	#Nos regresa a la lista de Eventos
 	return redirect('/lista_eventos/')
+
+#Vista que nos proporciona un formulario dónde podrá agregar un Tip el superusuario
+def vista_agregar_tips(request):
+	if request.method == 'POST':
+		formulario = agregar_tips_form(request.POST, request.FILES)
+		if formulario.is_valid():
+		   tis = formulario.save(commit = False)
+		   tis.status = True
+		   #Variable que nos guarda los cambios a la tabla
+		   tis.save()
+		   formulario.save_m2m()
+		   #Variable que nos regresa al template de lista con los items.
+		return redirect('/lista_tips/')
+	#Si no se cumple la condición anterior, entonces nos retorna al template de agregar un Tip.
+	else:
+		formulario = agregar_tips_form()
+	return render(request, 'agregar_tips.html', locals())
+
+
+#Vista que nos permitirá editar los campos de un Tip/Consejo previamente agregado.
+def vista_editar_tips(request, id_typis):
+	#Obtenemos el id del item que se editará
+	tis = Tips.objects.get(id = id_typis)
+	#Creamos una condición con el método POST, para gestionar la información de un item de la tabla Tips
+	if request.method =="POST":
+		formulario = agregar_tips_form(request.POST, request.FILES, instance =tis)
+		if formulario.is_valid():
+			#Una ves editados los campos del item que haya seleccionado el usuario, le indicamos al formulario que guarde los cambios.
+			tis = formulario.save()
+			#Función que nos regresa al template que contiene la lista de los datos ya modificados.
+			return redirect('/lista_tips')
+	#Si no se cumple la petición de forma correcta, nos regresará al template de agregar un Tip.
+	else:
+		formulario = agregar_tips_form(instance = tis)
+		return render(request, 'agregar_tips.html', locals())
+
+#Vista que dará la opción de eliminar un item de la tabla Tips al superusuario.
+def vista_eliminar_tips(request, id_typis):
+	cent = Tips.objects.get(id = id_typis)
+	cent.delete()
+	return redirect('/lista_tips/')

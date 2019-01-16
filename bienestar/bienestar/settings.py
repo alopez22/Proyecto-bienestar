@@ -27,9 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#'bienestar.herokuapp.com' (va en allowed host)
 
 # Application definition
-
+# Incluimos la aplicacion webservices junto con los servicios que instalamos
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sena',
+    'gunicorn',
+    'psycopg2',
+    #'rest_framework',
+    #'webservices',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+#STATIC_ROOT = os.path.join(BASE_DIR,'static')
+
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
